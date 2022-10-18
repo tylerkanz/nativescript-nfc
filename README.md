@@ -4,6 +4,8 @@
 [![Downloads][downloads-image]][npm-url]
 [![Twitter Follow][twitter-image]][twitter-url]
 
+Forked from EddyVerbruggen/nativescript-nfc to Support Android SDK 31+
+
 [npm-image]: http://img.shields.io/npm/v/nativescript-nfc.svg
 [npm-url]: https://npmjs.org/package/nativescript-nfc
 [downloads-image]: http://img.shields.io/npm/dm/nativescript-nfc.svg
@@ -19,7 +21,7 @@ From the command prompt go to your app's root folder and execute:
 ### NativeScript Version 7+:
 
 ```bash
-ns plugin add nativescript-nfc
+npm i @tylerkanz/nativescript-nfc --save
 ```
 
 ### NativeScript Version 6 and below:
@@ -60,9 +62,11 @@ The [demo app](demo) has this:
 
 > ⚠️ Since plugin version 4.0.0 this section is no longer needed, but you'll HAVE to run NativeScript 5.4.0 or newer. If you're using an older NativeScript, please stick to a plugin version < 4.0.0.
 
-Update the `activity` entry in your `App_Resources/Android/AndroidManifest.xml` file:
+Update the `uses permission` and `activity` entry in your `App_Resources/Android/AndroidManifest.xml` file:
 
 ```xml
+<uses-permission android:name="android.permission.NFC" />
+
 <activity
         android:name="com.tns.NativeScriptNfcActivity"
         android:label="@string/title_activity_kimera"
@@ -97,7 +101,7 @@ Not all devices have an NFC chip we can tap in to (and on iOS you need to build 
 
 ```js
 // require the plugin
-var Nfc = require("nativescript-nfc").Nfc;
+var Nfc = require("@tylerkanz/nativescript-nfc").Nfc;
 
 // instantiate the plugin
 var nfc = new Nfc();
@@ -111,7 +115,7 @@ nfc.available().then(function (avail) {
 
 ```typescript
 // require the plugin
-import { Nfc } from "nativescript-nfc";
+import { Nfc } from "@tylerkanz/nativescript-nfc";
 
 // instantiate the plugin
 let nfc = new Nfc();
@@ -169,7 +173,7 @@ nfc
 ##### TypeScript
 
 ```typescript
-import { NfcNdefData } from "nativescript-nfc";
+import { NfcNdefData } from "@tylerkanz/nativescript-nfc";
 
 nfc
   .setOnNdefDiscoveredListener(
@@ -230,7 +234,7 @@ nfc
 ##### TypeScript
 
 ```typescript
-import { NfcTagData } from "nativescript-nfc";
+import { NfcTagData } from "@tylerkanz/nativescript-nfc";
 
 nfc
   .setOnTagDiscoveredListener((data: NfcTagData) => {
