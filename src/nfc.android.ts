@@ -455,6 +455,10 @@ export class Nfc implements NfcApi {
   }
 
   private initNfcAdapter() {
+    const sdk31Intent = {
+      FLAG_MUTABLE: 33554432,
+      FLAG_IMMUTABLE: 67108864
+    };
     if (!this.created) {
       const activity =
         Application.android.foregroundActivity ||
@@ -470,8 +474,8 @@ export class Nfc implements NfcApi {
           activity,
           0,
           this.intent,
-          0
-        );
+          android.os.Build.VERSION.SDK_INT < 31 ? 0 : sdk31Intent.FLAG_MUTABLE
+          );
 
         // The adapter must be started with the foreground activity.
         // This allows to start it as soon as possible but only once.
